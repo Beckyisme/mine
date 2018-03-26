@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css3 3D 扑克牌效果</title>
+    <link rel="icon" href="images/mak.ico">
+    <style media="screen">
+      .box{
+        width:200px;
+        height:300px;
+        position: relative;
+        margin:100px auto;
+        transform: perspective(700px) rotateX(0deg) rotateY(0deg);
+        transition: 5s all ease;
+        transform-style: preserve-3d;
+      }
+      .box div{
+        width:198px;
+        height:298px;
+        border:1px solid #333;
+        position: absolute;
+      }
+      .box:active{
+        transform: perspective(700px) rotateX(0deg) rotateY(180deg);
+      }
+      .box div.front{
+        transform: translateZ(1px);
+        background:#dcff93;
+      }
+      .box div.back{
+        transform: translateZ(-1px) scaleX(-1);
+        background: #f1b8e4;
+      }
+    </style>
+  </head>
+  <body>
+    <p style="text-align:center">请把鼠标箭头放在扑克牌上，按住鼠标，方可出现效果</p>
+    <div class="box">
+      <div class="front">前</div>
+      <div class="back">后</div>
+    </div>
+  </body>
+</html>

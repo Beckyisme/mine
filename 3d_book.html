@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css3 3D 翻书效果</title>
+    <link rel="icon" href="images/mak.ico">
+    <style media="screen">
+      .box{
+        width:400px;
+        height:300px;
+        position: relative;
+        margin:100px auto;
+        transform: perspective(700px) rotateX(40deg);
+        transform-style: preserve-3d;
+      }
+      .box .page{
+        width:198px;
+        height:298px;
+        position: absolute;
+        top:0;
+        border:1px solid #333;
+        background: #fff;
+      }
+      .box .page1{ left:0;}
+      .box .page4{right:0;}
+      .box .child{
+        width:200px;
+        height:300px;
+        position: absolute;
+        left:50%;
+        transform-style: preserve-3d;
+        transform: rotateY(0deg);
+        transition: 2s all ease;
+        transform-origin: left;
+      }
+      .box .child .page2{
+        transform: translateZ(1px);
+      }
+      .box .child .page3{
+        transform: translateZ(-1px) scaleX(-1);
+      }
+      .box .child:active{
+        transform: rotateY(-180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <p style="text-align:center">请把鼠标箭头放在第二页上，按住鼠标，方可出现效果</p>
+    <div class="box">
+      <div class="page page1">111</div>
+      <div class="child">
+        <div class="page page2">222</div>
+        <div class="page page3">333</div>
+      </div>
+      <div class="page page4">444</div>
+    </div>
+  </body>
+</html>
