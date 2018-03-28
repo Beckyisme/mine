@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>分享弹窗</title>
+    <link rel="icon" href="images/mak.ico">
+    <style>
+      body{
+          padding:0;
+          margin:0;
+      }
+      #box{
+          width:300px;
+          height:400px;
+          position: absolute;
+          left:-300px;
+          background: #333333;
+      }
+      #box span{
+          width:60px;
+          height:60px;
+          text-align: center;
+          background: #006699;
+          color:#fff;
+          position: absolute;
+          right:-60px;
+          line-height:60px;
+      }
+  </style>
+  <script>
+      window.onload = function(){
+          var oBox = document.getElementById("box");
+          oBox.onmouseover = function(){
+              startMove(0)//参数为目标点
+          };
+          oBox.onmouseout = function(){
+              startMove(-300)
+          };
+      };
+      var timer = null;//应该是全局，如果设在运动函数内部，会发生抖动的bug
+      function startMove(iTarget){
+          var oBox = document.getElementById("box");
+          //速度正负判断
+          var speed = 0;
+          if(oBox.offsetLeft < iTarget){
+              speed = 10;
+          }else{
+              speed=-10;
+          }
+          clearInterval(timer);
+          timer = setInterval(function(){
+              if(oBox.offsetLeft == iTarget){
+                  clearInterval(timer);
+              }else{
+                  oBox.style.left = oBox.offsetLeft+speed+'px';
+              }
+          },30);
+      }
+
+  </script>
+  </head>
+  <body>
+    <div id="box">
+        <span>分享</span>
+    </div>
+  </body>
+</html>
