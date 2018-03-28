@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>可视区中间-悬浮框(缓冲运动)</title>
+    <link rel="icon" href="images/mak.ico">
+    <style>
+        #box{
+            width:100px;
+            height:100px;
+            background:#006699;
+            position: absolute;
+            right:0;
+            bottom:0;
+        }
+    </style>
+    <script>
+        window.onscroll = function(){
+            var box = document.getElementById("box");
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            move(parseInt((document.documentElement.clientHeight - box.offsetHeight)/2 + scrollTop));
+        };
+        //以下是运动框架
+        var timer = null;
+        function move(iTarget){
+            var box = document.getElementById("box");
+            clearInterval(timer);
+            timer = setInterval(function(){
+                var speed = (iTarget - box.offsetTop)/8;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);//向上、向下取整
+                if(box.offsetTop == iTarget){
+                    clearInterval(timer);
+                }else{
+                    box.style.top = box.offsetTop + speed +'px';
+                }
+            },30);
+        }
+    </script>
+</head>
+<body style="height:2000px">
+    <div id="box"></div>
+</body>
+</html>
