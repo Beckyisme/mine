@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>选项卡实例</title>
+    <link rel="icon" href="images/mak.ico">
+    <style>
+        #box{
+            width:300px;
+            height:400px;
+        }
+        #box input{
+            display: inline-block;
+            border:none;
+            margin:10px;
+            padding:10px;
+            cursor:pointer;
+        }
+        .active{
+            background:#006699;
+            color:#fff;
+        }
+        #box div{
+            width:300px;
+            height:300px;
+            border:1px solid #333;
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var box = document.getElementById("box");
+            var selectBtn = box.getElementsByTagName("input");
+            var content = box.getElementsByTagName("div");
+            for(var i=0;i<selectBtn.length;i++){
+                selectBtn[0].className = "active";
+                content[0].style.display = "block";
+                selectBtn[i].index = i; //important role
+                selectBtn[i].onclick = function(){
+                    for(var i=0;i<selectBtn.length;i++){
+                        selectBtn[i].className = "";
+                        content[i].style.display = "none";
+                    }
+                    this.className = "active";
+                    content[this.index].style.display = "block";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="军事"/>
+        <input type="button" value="娱乐"/>
+        <input type="button" value="医药"/>
+        <input type="button" value="期刊"/>
+        <div>
+            军事内容
+        </div>
+        <div>
+            娱乐内容
+        </div>
+        <div>
+            医药内容
+        </div>
+        <div>
+            期刊内容
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>简易日历</title>
+    <link rel="icon" href="images/mak.ico">
+    <style>
+        ul,li{
+            padding:0;
+            margin:0;
+        }
+        #box{
+            width:304px;
+            height:502px;
+            border:1px solid #333;
+            margin:20px auto;
+            background:#e9e9e9;
+        }
+        #box ul{
+            text-align: center;
+            margin-top:20px;
+        }
+        #box ul li{
+            list-style-type: none;
+            display: inline-block;
+            width:100px;
+            height:100px;
+            text-align:center;
+            margin-bottom:10px;
+            cursor:pointer;
+            border:1px solid #333333;
+        }
+        .active{
+            background: #63ced7;
+            color:#fff;
+        }
+        #content{
+            width:200px;
+            margin:0 auto;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var str = [
+                '11111111111111111',
+                '222222222222222222',
+                '33333333333333333333',
+                '444444444444444444444',
+                '555555555555555555',
+                '666666666666666666'
+            ];
+            var box = document.getElementById("box");
+            var month = box.getElementsByTagName("li");
+            var content = box.getElementsByTagName("div")[0];
+            for(var i=0;i<month.length;i++){
+                month[i].index = i; //给month的li中添加index属性
+                month[i].onmouseover = function() {
+                    for(var i=0;i<month.length;i++){
+                        month[i].className = '';
+                    }
+                    this.className = 'active';
+                    content.innerHTML = "<h4>"+(this.index+1)+"月份</h4><p>"+str[this.index]+"</p>";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li class="active" index="0"><h4>1月</h4><p>Nov</p></li>
+            <li index="1"><h4>2月</h4><p>Dec</p></li>
+            <li><h4>3月</h4><p>Thr</p></li>
+            <li><h4>4月</h4><p>April</p></li>
+            <li><h4>5月</h4><p>May</p></li>
+            <li><h4>6月</h4><p>March</p></li>
+        </ul>
+        <div id="content">
+            <h4>1月份</h4><p>你好本月暂无计划</p>
+        </div>
+    </div>
+</body>
+</html>
