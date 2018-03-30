@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>多物体变宽</title>
+    <link rel="icon" href="images/mak.ico">
+    <style>
+        div{
+            width:50px;
+            height:50px;
+            background: #006699;
+            margin-bottom:10px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var aDiv = document.getElementsByTagName("div");
+            for(var i=0;i<aDiv.length;i++){
+                aDiv[i].timer = null;
+                aDiv[i].onmouseover = function(){
+                    move(this,400);
+                };
+                aDiv[i].onmouseout = function(){
+                    move(this,50);
+                }
+            }
+        };
+        function move(obj,iTarget){
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                var speed = (iTarget - obj.offsetWidth)/5;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if(obj.offsetWidth == iTarget){
+                    clearInterval(obj.timer);
+                }else{
+                    obj.style.width  = obj.offsetWidth + speed + 'px';
+                }
+            },30);
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>
