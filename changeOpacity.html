@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>多物体渐变</title>
+    <link rel="icon" href="images/mak.ico">
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            background: red;
+            filter:alpha(opacity:30);
+            opacity: 0.3;
+            float: left;
+            margin-right:10px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var aDiv = document.getElementsByTagName("div");
+            for(var i=0;i<aDiv.length;i++){
+                aDiv[i].timer = null;
+                aDiv[i].level = 30;//多物体运动 ，元素不能共享使用，一个i一个变量使用
+                aDiv[i].onmouseover = function(){
+                    move(this, 100);
+                };
+                aDiv[i].onmouseout = function(){
+                    move(this, 30);
+                }
+            }
+        };
+        function move(obj, iTarget){
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                var speed = (iTarget - obj.level)/5;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if(obj.level == iTarget){
+                    clearInterval(obj.timer);
+                }else{
+                    obj.level+=speed;
+                    obj.style.opacity = obj.level/100;
+                    obj.style.filter = 'alpha(opacity:'+obj.level+')';
+                }
+            },30);
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>
